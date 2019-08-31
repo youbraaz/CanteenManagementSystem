@@ -66,7 +66,6 @@ public class Welcomescreen {
 
 	private void initialize() {
 		frame = new JFrame();
-		frame.setResizable(false);
 		frame.getContentPane().setForeground(new Color(0, 0, 139));
 		frame.getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 12));
 		frame.setBounds(50, 50,881,566);
@@ -87,38 +86,17 @@ public class Welcomescreen {
 		headline.setFont(new Font("Times New Roman", Font.BOLD, 25));
 		panel.add(headline);
 		
-		JButton edit = new JButton("Edit");
-		edit.setBounds(50, 75, 125, 32);
-		edit.setFont(new Font("Tahoma", Font.BOLD, 12));
-		edit.setBackground(new Color(255, 0, 0));
-		frame.getContentPane().add(edit);
-		
-		JButton search = new JButton("Search");
-		search.setBounds(220, 75, 99, 32);
+		JButton search = new JButton("Add Customer");
+		search.setBounds(356, 169, 133, 20);
 		search.setFont(new Font("Tahoma", Font.BOLD, 12));
 		search.setForeground(new Color(0, 0, 0));
 		search.setBackground(new Color(255, 0, 0));
 		search.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 			}
 		});
 		frame.getContentPane().add(search);
-		
-		
-		
-		JButton logout = new JButton("Logout");
-		logout.setBounds(375, 75, 99, 32);
-		logout.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			
-			}
-		});
-		
-		
-		logout.setFont(new Font("Tahoma", Font.BOLD, 12));
-		logout.setBackground(new Color(255, 0, 0));
-		frame.getContentPane().add(logout);
 		
 		
 		
@@ -169,7 +147,7 @@ public class Welcomescreen {
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(190, 24, 108, 22);
 		comboBox.setForeground(new Color(0, 0, 0));
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Select Drinks", "CocaCola", "Fanta", "Sprite", "Mirinda", "Dew", "Pepsi", "Real Juice", "Apple Juice"}));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Select Drinks", "CocaCola", "Fanta", "Pepsi", "RealJuice", "AppleJuice"}));
 		comboBox.setFont(new Font("Tahoma", Font.BOLD, 12));
 		Panel.add(comboBox);
 		
@@ -292,9 +270,15 @@ public class Welcomescreen {
 				int sausagePrice = 30;
 				int chowmeinPrice = 80;
 				int pizzaPrice = 230;
+				int CocaColaPrice = 50;
+				int Fantaprice=50;
+				int Pepsiprice=50;
+				int Realprice=35;
+				int AppleJuiceprice=35;
 			
 				int sum = 0;
-				int momo = 0,burger = 0,sausage = 0,chowmein =0;
+				int momo = 0,burger = 0,sausage = 0,chowmein =0,CocaCola=0,Fanta=0,Pepsi=0;
+				int RealJuice= 0,AppleJuice=0;
 				int pizza=0;
 				
 				if(!jblmomo.getText().equals("")) {				
@@ -319,32 +303,49 @@ public class Welcomescreen {
 					sum += pizza*pizzaPrice;
 				}
 				
-
 				
+					if(comboBox.getSelectedItem()=="CocaCola") {
+						int quan = Integer.parseInt(jblqty.getText());
+						sum += quan * CocaColaPrice;
+					}
+					if(comboBox.getSelectedItem()=="Fanta") {
+						int quan = Integer.parseInt(jblqty.getText());
+						sum += quan * Fantaprice;
+					}
+					
+					if(comboBox.getSelectedItem()=="RealJuice") {
+						int quan = Integer.parseInt(jblqty.getText());
+						sum += quan * Realprice;
+					}
+					
+					if(comboBox.getSelectedItem()=="AppleJuice") {
+						int quan = Integer.parseInt(jblqty.getText());
+						sum += quan * AppleJuiceprice;
+					}
+					
+					if(comboBox.getSelectedItem()=="Pepsi") {
+						int quan = Integer.parseInt(jblqty.getText());
+						sum += quan * Pepsiprice;
+					}
 				jbltotal.setText(sum+"");
 				
-//				double momo=Double.parseDouble(jblmomo.getText());
-//				double mom =80.0;
-//				
-//					double calc=(momo*mom);
-//					String pmomo =calc+""; //String.format("%.2f", calc);
-//					jbltotal.setText(pmomo);
-//					
-//					double chowmi=Double.parseDouble(jblchowmin.getText());
-//					double chow =60.0;
-//					double chowmin=(chowmi*chow);
-//						String pchow = String.format("%.2f",chowmin+calc);
-//						jbltotal.setText(pchow);
-//						
-//						double sausage=Double.parseDouble(jblsausage.getText());
-//						double sause =30.0;
-//						double saus=(sause*sausage);
-//							String asaus = String.format("%.2f",saus + chowmin + calc);
-//							jbltotal.setText(asaus);
-//							
+		
+			 //
+				
+				String tx = jblmoney.getText();
+				
+				
+				if(tx.equals("")) {
+					
+					}else {
+						jblret.setText((Integer.parseInt(jblmoney.getText())-sum)+"");
+					}
+				
+				
+				}
 			
-						
-			}
+			
+			
 
 		});
 		btnNewButton.setBackground(Color.GREEN);
@@ -401,6 +402,10 @@ public class Welcomescreen {
 		
 				
 		JButton btnok = new JButton("OK");
+		btnok.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnok.setBackground(new Color(153, 255, 204));
 		btnok.setFont(new Font("Tahoma", Font.BOLD, 20));
 		btnok.setBounds(50, 468, 89, 23);
@@ -410,11 +415,12 @@ public class Welcomescreen {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				textreceipt.setText("*********************************************************\n");
-				textreceipt.setText(textreceipt.getText()+ "            **  Canteen Management System   **       \n"); 
+				textreceipt.setText(textreceipt.getText()+ "            >>>Canteen Management System<<<          \n"); 
 				textreceipt.setText(textreceipt.getText() + "*********************************************************\n");
 				
-				textreceipt.setText(textreceipt.getText()+"Custmoer Name: " + textArea.getText()+"\t ID: "+textId.getText());
-				
+				textreceipt.setText(textreceipt.getText()+"Custmoer Name: " + textArea.getText()+"\t\t ID: "+textId.getText());
+				textreceipt.setText(textreceipt.getText()+"\nTotal: " +jbltotal.getText()+"\t\t\t Return: "+jblret.getText());
+				textreceipt.setText(textreceipt.getText()+"\nMoney Received: " +jblmoney.getText());
 				
 			}
 			

@@ -15,6 +15,7 @@ import java.awt.Color;
 import java.awt.SystemColor;
 import java.awt.Cursor;
 import javax.swing.SwingConstants;
+
 import javax.swing.ImageIcon;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent;
@@ -102,6 +103,7 @@ public class Login {
 					textUsername.setText(null);
 					Welcomescreen info = new Welcomescreen();
 					Welcomescreen.main(null);
+					frmLogin.dispose();
 					
 				}
 				else
